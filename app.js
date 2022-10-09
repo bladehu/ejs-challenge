@@ -87,10 +87,21 @@ app.get("/posts/:postId", function(req, res){
     } else {
       res.render("post", {
         recentPostTitle: foundPost.title,
-        recentPostContent: foundPost.content
+        recentPostContent: foundPost.content,
+        recentPostId: foundPost._id
       });
     }
   });
+});
+
+app.post("/delete/:postId", function(req, res){
+  const postToDeleteId = req.params.postId;
+  Post.findByIdAndRemove(postToDeleteId, function(err){
+    if (!err){
+      console.log("Successfully deleted post.");
+    }
+  });
+  res.redirect("/");
 });
 
 let port = process.env.PORT;

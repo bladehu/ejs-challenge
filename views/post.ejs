@@ -2,5 +2,8 @@
 
   <h1><%= recentPostTitle %></h1>
   <p><%= recentPostContent %></p>
+  <form class="" action="/delete/<%=recentPostId%>" method="post">
+    <button type="submit" name="button">Delete Post</button>
+  </form>
 
 <%- include("partials/footer"); -%>
